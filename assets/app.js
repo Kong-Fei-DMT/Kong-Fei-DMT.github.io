@@ -1,4 +1,27 @@
 document.documentElement.classList.add('js');
+/* A manual selection wins over the system preference on every page and locale. */
+const themeToggle = document.querySelector('[data-theme-toggle]');
+if (themeToggle) {
+  const root = document.documentElement;
+  const systemTheme = matchMedia('(prefers-color-scheme: dark)');
+  const renderTheme = theme => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    themeToggle.querySelector('[data-theme-label]').textContent = dark ? themeToggle.dataset.lightLabel : themeToggle.dataset.darkLabel;
+    themeToggle.setAttribute('aria-label', dark ? themeToggle.dataset.lightAction : themeToggle.dataset.darkAction);
+  };
+  renderTheme(root.dataset.theme || (systemTheme.matches ? 'dark' : 'light'));
+  themeToggle.hidden = false;
+  themeToggle.addEventListener('click', () => {
+    const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.themePreference = 'manual';
+    renderTheme(theme);
+    try { localStorage.setItem('portfolio-theme', theme); } catch { /* Keep the toggle working without storage. */ }
+  });
+  systemTheme.addEventListener('change', e => {
+    if (root.dataset.themePreference !== 'manual') renderTheme(e.matches ? 'dark' : 'light');
+  });
+}
 /* Progressive enhancement: all reading and navigation work without JavaScript. */
 const menu = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#main-nav');
