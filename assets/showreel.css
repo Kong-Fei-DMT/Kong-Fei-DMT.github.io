@@ -1,0 +1,32 @@
+/* Homepage showreel uses the shared light/dark glass tokens. */
+.showreel { display: grid; grid-template-columns: minmax(0,1.22fr) minmax(0,1fr); overflow: hidden; }
+.showreel-media { position: relative; display: flex; align-items: center; min-width: 0; background: var(--media); }
+.showreel-media img { width: 100%; height: auto; }
+.showreel-media:focus-visible { outline-offset: -5px; }
+.showreel-play { position: absolute; left: 18px; bottom: 18px; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid #ffffff8c; border-radius: 50%; background: #10253dd9; color: #fff; backdrop-filter: blur(12px); transition: background .2s, transform .2s; }
+.showreel-play svg { width: 20px; height: 20px; fill: currentColor; }
+.showreel-media:hover .showreel-play, .showreel-media:focus-visible .showreel-play { background: #285f8e; transform: scale(1.08); }
+.showreel-copy { min-width: 0; padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; background: var(--caption); }
+.showreel-copy h2 { font-size: 30px; margin-top: 8px; }
+.showreel-description { font-size: 15px; line-height: 1.8; color: var(--muted); margin-top: 14px; }
+.showreel-watch { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; margin-top: 18px; font-size: 14px; color: var(--accent); border-bottom: 1px solid currentColor; }
+.showreel-watch > span[aria-hidden] { font-size: 20px; }
+.projects-divider { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 26px 0 14px; color: var(--muted); }
+.projects-divider > span { font-size: 12px; letter-spacing: .08em; }
+@media (max-width: 900px) {
+  .showreel { grid-template-columns: minmax(0,1fr); }
+  .showreel-copy { padding: 20px; }
+  .showreel-copy h2 { font-size: 26px; }
+}
+@media (max-width: 700px) {
+  .showreel { grid-template-columns: minmax(0,1fr); }
+  .showreel-copy { padding: 18px 20px 20px; }
+  .showreel-description { margin-top: 12px; }
+  .showreel-watch { margin-top: 12px; }
+  .showreel-play { width: 44px; height: 44px; left: 14px; bottom: 14px; }
+  .projects-divider { padding-top: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showreel-play { transition: none; }
+  .showreel-media:hover .showreel-play, .showreel-media:focus-visible .showreel-play { transform: none; }
+}
