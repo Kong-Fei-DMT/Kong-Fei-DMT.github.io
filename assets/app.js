@@ -74,15 +74,18 @@ document.querySelectorAll('.glass-panel').forEach(panel => {
   };
   glassResets.push(reset);
   panel.addEventListener('pointerenter', event => {
+    if (panel.classList.contains('has-active-preview')) { reset(); return; }
     if (event.pointerType !== 'mouse' || !finePointer.matches || reducedMotion.matches) return;
     bounds = panel.getBoundingClientRect();
   });
   panel.addEventListener('pointermove', event => {
+    if (panel.classList.contains('has-active-preview')) { reset(); return; }
     if (!bounds || reducedMotion.matches || !finePointer.matches) return;
     point = {x:event.clientX,y:event.clientY};
     if (frame) return;
     frame = requestAnimationFrame(() => {
       frame = 0;
+      if (panel.classList.contains('has-active-preview')) { reset(); return; }
       if (!bounds || !point) return;
       const x = Math.max(0,Math.min(1,(point.x-bounds.left)/bounds.width));
       const y = Math.max(0,Math.min(1,(point.y-bounds.top)/bounds.height));
