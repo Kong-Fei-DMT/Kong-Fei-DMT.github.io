@@ -334,3 +334,19 @@ html:lang(zh-CN) .card-number { font-family: Georgia,'Times New Roman',serif; }
 
 /* External video remains a clear link; the full cover is visible without cropping. */
 .film-external .text-link { margin-top: 24px; padding: 12px 22px; border: 1px solid var(--accent); border-radius: 100px; background: var(--control); }
+
+/* English type uses local fonts and a bounded measure for comfortable reading. */
+html:lang(en) :is(h1,h2,h3) { text-wrap: balance; }
+html:lang(en) :is(.section-heading,.project-title-row) > div { min-width: 0; }
+html:lang(en) .section-heading h1,
+html:lang(en) .project-title-row h1 {
+  font-size: clamp(1.875rem, 1.48rem + 1.35vw, 2.5rem);
+  line-height: 1.14; letter-spacing: -.022em;
+}
+html:lang(en) .project-caption h2 { font-size: clamp(1.375rem, 1.2rem + .65vw, 1.625rem); line-height: 1.2; }
+html:lang(en) .featured-card .project-caption h2 { font-size: clamp(1.5rem, 1.2rem + .9vw, 1.8rem); }
+html:lang(en) .project-summary { max-width: 48ch; line-height: 1.55; }
+html:lang(en) .large-copy { max-width: 65ch; font-size: clamp(1rem, .94rem + .4vw, 1.125rem); line-height: 1.65; }
+@media (max-width:700px) {
+  html:lang(en) :is(.theme-toggle,.language-switch) { font-size: .875rem; }
+}
