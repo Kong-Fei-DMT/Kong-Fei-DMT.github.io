@@ -30,3 +30,11 @@
   .showreel-play { transition: none; }
   .showreel-media:hover .showreel-play, .showreel-media:focus-visible .showreel-play { transform: none; }
 }
+
+/* Model identifiers read as capitals and lining figures, even on systems
+   where the installed Georgia has only old-style figures. */
+.engine-name {
+  font-family: "Times New Roman", Times, "Liberation Serif", serif;
+  font-variant-numeric: lining-nums;
+  white-space: nowrap;
+}
